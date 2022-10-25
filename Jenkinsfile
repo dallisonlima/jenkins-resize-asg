@@ -18,9 +18,7 @@ pipeline {
 
         stage('Start'){
             when{
-                not{
-                    equals expected: true, actual: params.Start
-                }
+                equals expected: true, actual: params.Start
             }
             steps{
                 sh 'aws autoscaling update-auto-scaling-group --auto-scaling-group-name my-asg-teste --min-size 1 --max-size 2'
@@ -30,9 +28,7 @@ pipeline {
 
         stage('Stop'){
             when{
-                not{
-                    equals expected: true, actual: params.Stop
-                }
+                equals expected: true, actual: params.Stop
             }
             steps{
                 sh 'aws autoscaling update-auto-scaling-group --auto-scaling-group-name my-asg-teste --min-size 0 --max-size 0'
